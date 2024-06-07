@@ -7,7 +7,7 @@ const dbCannect = async ()=>{
             console.log("MONGODB CONNECTION")
        })
     }catch(error){
-
+        throw new error(error.message)
     }
 }
 
