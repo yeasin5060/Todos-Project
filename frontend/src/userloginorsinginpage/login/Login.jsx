@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import googlelogo  from '../../iamges/google.svg'
 import todo from '../../iamges/todo-image.png'
 import { Oval } from 'react-loader-spinner';
 import Hedars from '../../utils/hedars/Hedars'
-
+import axios from 'axios';
 const Login = () => {
+    const navigate = useNavigate()
                 //this useState recive the login data
     const [loginData , setLoginData] = useState({
         email : "",
@@ -26,7 +27,7 @@ const Login = () => {
          //email regex
   const emailregex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ 
 
-    const loginBtn = (e)=>{
+    const loginBtn = async (e)=>{
         e.preventDefault();
         //react loder ture
         setReactLoder(true)
@@ -39,8 +40,12 @@ const Login = () => {
         }else if(!loginData.password){
             setSendError({password : "Password is Require"})
         }else{
-           console.log(loginData);
+           let res = await axios.post("http://localhost:5000/api/v1/user/login",{
+            email : loginData.email,
+            password : loginData.password
+           })
         }
+        navigate("/home")
     }
 
         //react loder
