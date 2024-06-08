@@ -14,7 +14,7 @@ const register = async ( req , res)=>{
     }
 }
 
-const totos = async ( rep , res) => {
+/*const totos = async ( rep , res) => {
     const {title , description , user } = rep.body
     if([title , description , user].some((field) => field ?.trim () == "")){
         res.send("sob lagbe")
@@ -22,5 +22,27 @@ const totos = async ( rep , res) => {
         const todo = await Todos.create({title : title , description : description , user : user})
         res.json({message : "todos create done" , todo})
     }
+}*/
+const login =  async (rep ,res) => {
+    const {password , email} = rep.body;
+
+    if([password , email].some((field) => field ?.trim() == "")){
+        res.send("sob lagbe")
+    }
+    const user = await User.findOne({email})
+    if(!user){
+        res.send("invalid email")
+    }
+
+    const isPasswoerCorrect = await  bcrypt.compare(password , user.password)
+
+    if(!isPasswoerCorrect){
+        res.send("invalid password")
+    }
+
+    const user2 = await User.findById(user._id).select("-password")
+
+    res.json({message: "login done" , user2})
 }
-export {register , totos}
+
+export {register , login}

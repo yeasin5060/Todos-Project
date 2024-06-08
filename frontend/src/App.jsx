@@ -1,10 +1,24 @@
+import {
+  createRoutesFromElements,
+  createBrowserRouter,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
+import Login from "./userloginorsinginpage/login/Login";
+
 function App() {
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route>
+       <Route></Route>
+      <Route path="/" element = {<Login/>}/>
+      </Route>
+    )
+  );
   return (
-    <>
-     <h1 className="text-3xl font-bold underline text-[red]">
-      Hello world!
-    </h1>
-    </>
+    <RouterProvider
+      router={router}
+    />
   )
 }
 
