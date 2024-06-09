@@ -14,15 +14,15 @@ const register = async ( req , res)=>{
     }
 }
 
-/*const totos = async ( rep , res) => {
+const todos = async ( rep , res) => {
     const {title , description , user } = rep.body
-    if([title , description , user].some((field) => field ?.trim () == "")){
+    if([title , description].some((field) => field ?.trim () == "")){
         res.send("sob lagbe")
     }else{
-        const todo = await Todos.create({title : title , description : description , user : user})
+        const todo = await Todos.create({title : title , description : description})
         res.json({message : "todos create done" , todo})
     }
-}*/
+}
 const login =  async (rep ,res) => {
     const {password , email} = rep.body;
 
@@ -45,4 +45,4 @@ const login =  async (rep ,res) => {
     res.json({message: "login done" , user2})
 }
 
-export {register , login}
+export {register , login , todos}

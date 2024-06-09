@@ -89,22 +89,22 @@ let [loder , setLoder] = useState(false)
                   <form className='signin-form-box'>
                       <Hedars level='p' children="Full Name" className="text-left text-5 text-black mb-[15px]"/>
                       <div className='w-[100%]'>
-                          <input className='w-[100%] py-[15px] px-[30px] outline-none border-[2px] border-color-[#000] rounded-[10px] text-4 text-black font-[600]' type='text' placeholder='Enter your name'  name="name" onChange={handelform}/>
+                          <input className='w-[100%] py-[15px] px-[30px] outline-none border-[2px] border-color-[#000] rounded-[10px] text-4 text-black font-[600]' type='text' placeholder='Enter your name' value={signinData.name}  name="name" onChange={handelform}/>
                           {sendError.name && <p className='text-4 text-[red] font-[600] mt-3'>{sendError.name}</p>}
                       </div>
                       <Hedars level='p' children="Email Address" className="text-left text-5 text-black mt-[15px]"/>
                       <div className='mt-[15px]'>
-                          <input className='w-[100%] py-[15px] px-[30px] outline-none border-[2px] border-color-[#000] rounded-[10px] text-4 text-black font-[600]' type='email' placeholder='Enter your email'  name="email" onChange={handelform}/>
+                          <input className='w-[100%] py-[15px] px-[30px] outline-none border-[2px] border-color-[#000] rounded-[10px] text-4 text-black font-[600]' type='email' placeholder='Enter your email' value={signinData.email}  name="email" onChange={handelform}/>
                           {sendError.email && <p className='text-4 text-[red] font-[600] mt-3'>{sendError.email}</p>}
                       </div>
                       <Hedars level='p' children="password" className="text-left text-5 text-black mt-[15px]"/>
                       <div className='mt-[15px]'>
-                          <input className='w-[100%] py-[15px] px-[30px] outline-none border-[2px] border-color-[#000] rounded-[10px] text-4 text-black font-[600]' type='password' placeholder='Enter your password'   name="password" onChange={handelform}/>
+                          <input className='w-[100%] py-[15px] px-[30px] outline-none border-[2px] border-color-[#000] rounded-[10px] text-4 text-black font-[600]' type='password' placeholder='Enter your password' value={signinData.password}  name="password" onChange={handelform}/>
                           {sendError.password && <p className='text-4 text-[red] font-[600] mt-3'>{sendError.password}</p>}
                       </div>
                       <Hedars level='p' children="Confrim Password" className="text-left text-5 text-black mt-[15px]"/>
                       <div className='mt-[15px]'>
-                          <input className='w-[100%] py-[15px] px-[30px] outline-none border-[2px] border-color-[#000] rounded-[10px] text-4 text-black font-[600]' type='password' placeholder='confrim-password' name="conpass" onChange={handelform}/>
+                          <input className='w-[100%] py-[15px] px-[30px] outline-none border-[2px] border-color-[#000] rounded-[10px] text-4 text-black font-[600]' type='password' placeholder='confrim-password' value={signinData.conpass} name="conpass" onChange={handelform}/>
                           {sendError.conpass && <p className='text-4 text-[red] font-[600] mt-3'>{sendError.conpass}</p>}
                       </div>
                       <div className=' mt-[30px] flex items-center justify-center p-[15px] bg-[#2be2d3] rounded-[10px]'>

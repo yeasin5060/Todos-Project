@@ -29,8 +29,6 @@ const Login = () => {
 
     const loginBtn = async (e)=>{
         e.preventDefault();
-        //react loder ture
-        setReactLoder(true)
                 //validation
         if(!loginData.email){
             setSendError({email:"Email is Require"})
@@ -40,12 +38,18 @@ const Login = () => {
         }else if(!loginData.password){
             setSendError({password : "Password is Require"})
         }else{
+            //react loder true
+            setReactLoder(true)
            let res = await axios.post("http://localhost:5000/api/v1/user/login",{
             email : loginData.email,
             password : loginData.password
            })
+           setLoginData({
+            email : "",
+            password : ""
+           })
+           navigate("/home")
         }
-        navigate("/home")
     }
 
         //react loder
@@ -67,12 +71,12 @@ const Login = () => {
                     <form className='mt-10'>
                         <Hedars level='p' children="Email Address" className="text-left text-5 text-black mb-3"/>
                         <div className='w-[100%]'>
-                            <input className='w-[100%] py-[15px] px-[30px] outline-none border-[2px] border-color-[#000] rounded-[10px] text-4 text-black font-[600]' type='email' placeholder='Enter your email' name="email" onChange={handelform}/>
+                            <input className='w-[100%] py-[15px] px-[30px] outline-none border-[2px] border-color-[#000] rounded-[10px] text-4 text-black font-[600]' type='email' placeholder='Enter your email' value={loginData.email} name="email" onChange={handelform}/>
                             {sendError.email && <p className='text-4 text-[red] font-[600] mt-3'>{sendError.email}</p>}
                         </div>
                         <Hedars level='p' children="password" className="text-left text-5 text-black mb-3 mt-4"/>
                         <div className='w-[100%]'>
-                            <input className='w-[100%] py-[15px] px-[30px] outline-none border-[2px] border-color-[#000] rounded-[10px] text-4 text-black font-[600]' type='password' placeholder='Enter your password' name="password" onChange={handelform}/>
+                            <input className='w-[100%] py-[15px] px-[30px] outline-none border-[2px] border-color-[#000] rounded-[10px] text-4 text-black font-[600]' type='password' placeholder='Enter your password' value={loginData.password} name="password" onChange={handelform}/>
                             {sendError.password && <p className='text-4 text-[red] font-[600] mt-3'>{sendError.password}</p>}
                         </div>
                         <div className='w-[100%] text-right mt-4 '>
