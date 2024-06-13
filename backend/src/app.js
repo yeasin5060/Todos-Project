@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import cookieparser from "cookie-parser";
 import userrouter from './routes/user.route.js'
-
+import createroute from './routes/todo.route.js'
 
 const app = express()
 
@@ -15,5 +15,6 @@ app.use(cors({
 }))
 
 app.use(cookieparser())
-app.use("/api/v1/user",userrouter)
+app.use("/api/v1/users",userrouter)
+app.use ("/api/v1/todos",createroute)
 export{app}

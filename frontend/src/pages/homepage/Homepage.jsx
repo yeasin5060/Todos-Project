@@ -22,7 +22,7 @@ let add = async () => {
     setSendError({title : ""})
     setSendError({ description: "Description is Require"})
    }else{
-    let res = await axios.post("http://localhost:5000/api/v1/user/todo",{
+    let res = await axios.post("http://localhost:5000/api/v1/todos/create",{
         title : todo.title,
         description : todo.description,
         user : ""

@@ -1,6 +1,5 @@
 import bcrypt from "bcrypt"
 import { User } from "../model/user.model.js"
-import { Todos } from "../model/todos.medel.js"
 
 const register = async ( req , res)=>{
     const {name , email , password} = req.body
@@ -14,7 +13,7 @@ const register = async ( req , res)=>{
     }
 }
 
-const todos = async ( rep , res) => {
+/*const todos = async ( rep , res) => {
     const {title , description , user } = rep.body
     if([title , description].some((field) => field ?.trim () == "")){
         res.send("sob lagbe")
@@ -22,7 +21,7 @@ const todos = async ( rep , res) => {
         const todo = await Todos.create({title : title , description : description})
         res.json({message : "todos create done" , todo})
     }
-}
+}*/
 const login =  async (rep ,res) => {
     const {password , email} = rep.body;
 
@@ -45,4 +44,4 @@ const login =  async (rep ,res) => {
     res.json({message: "login done" , user2})
 }
 
-export {register , login , todos}
+export {register , login }

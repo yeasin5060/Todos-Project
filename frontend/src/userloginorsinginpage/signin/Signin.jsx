@@ -58,7 +58,7 @@ const signinBtn = async (e)=>{
         setSendError({conpass:""})
         setSendError({conpass : "Confirm Password Don't match"})
     }else{
-        let res = await axios.post("http://localhost:5000/api/v1/user/register",{
+        let res = await axios.post("http://localhost:5000/api/v1/users/register",{
             name : signinData.name,
             email : signinData.email,
             password : signinData.password

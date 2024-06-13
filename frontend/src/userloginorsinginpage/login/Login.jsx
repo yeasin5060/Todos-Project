@@ -40,7 +40,7 @@ const Login = () => {
         }else{
             //react loder true
             setReactLoder(true)
-           let res = await axios.post("http://localhost:5000/api/v1/user/login",{
+           let res = await axios.post("http://localhost:5000/api/v1/users/login",{
             email : loginData.email,
             password : loginData.password
            })
