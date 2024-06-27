@@ -10,5 +10,9 @@ const todos = async( req , res ) => {
         res.json({ message : "todos create done" , todos})
     }
 }
+const getTodo = async (req,res) =>{
+    const todo = Todos.find()
+    res.json({message : 'todos get done' , data:todo })
+}
 
-export{todos}
+export{todos , getTodo}

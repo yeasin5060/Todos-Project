@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import Hedars from '../../utils/hedars/Hedars'
 import axios from 'axios'
+import { useEffect } from 'react'
 
 const Homepage = () => {
+let [tododata , setTodoData] = useState([])
 let [todo,setTodo] = useState({
     title : "",
     description : ""
@@ -23,16 +25,26 @@ let add = async () => {
     setSendError({ description: "Description is Require"})
    }else{
     let res = await axios.post("http://localhost:5000/api/v1/todos/create",{
-        title : todo.title,
-        description : todo.description,
-        user : ""
+        method : "POST",
+        headers : {"content-type": "application/json"},
+        body : JSON.stringify(todo),
+        user : "666a83c20301745663eeca8c"
     })
+    todosdata()
     setTodo({
         title : "",
         description : ""
     })
    }
 }
+let todosdata = async ()=>{
+    let res = await axios.get("http://localhost:5000/api/v1/todos/gettodos")
+    setTodoData (res.data)
+}
+useEffect(()=>{
+    todosdata()
+},[])
+console.log(tododata);
   return (
     <section className='bg-white '>
         <div className='max-w-container mx-auto'>
@@ -50,6 +62,15 @@ let add = async () => {
                     <div className='flex items-center justify-center mt-[40px] w-[100%]'>
                         <button className='w-[100%] text-[22px] text-white font-[600] cursor-pointer rounded-[10px] py-3 bg-[#2be2d3] ' onClick={add}>Add</button>
                     </div>
+                    {
+                        tododata&&
+                        tododata.map((item)=>(
+                            <div>
+                                <li>{item.title}</li>
+                                <p>{item.description}</p>
+                            </div>
+                         ))
+                    }
                 </div>
             </div>
         </div>
